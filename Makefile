@@ -1,13 +1,22 @@
-CC=gcc
-FLAGS=-g -Wall -lpthread -ldl -lm -lrt
-INC=
+.SUFFIXES: .c .o
 
-TARGET=anbo
+CC = gcc
+CFLAGS = -g -Wall
+LFLAGS =
 
-$(TARGET):
-	$(CC) -o $(TARGET) $(TARGET).c $(INC) $(FLAGS)
+LIB = -lpthread -ldl -lm -lrt
+INC =
+
+TARGET = anbo
+
+OBJECTS = $(TARGET).o
+SRCS = $(TARGET).c
+
+$(TARGET): $(OBJECTS)
+	$(CC) -o $(TARGET) $(OBJECTS) $(LFLAGS) $(LIB)
+
+$(OBJECTS): $(SRCS)
+	$(CC) $(CFLAGS) -c $(INC) $(SRCS)
 
 clean:
-	rm -rf *~
-	rm -rf $(TARGET)
-	rm -rf $(TARGET).o
+	rm $(TARGET).o $(TARGET)
