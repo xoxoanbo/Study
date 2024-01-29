@@ -12,8 +12,14 @@ int main( int aArgc, char *aArgv[] )
     int sNum1 = 0;
     int sNum2 = 0;
 
-    while( scanf("%d %d", &sNum1, &sNum2) != -1 )
+    while( 1 )
     {
+        scanf("%d", &sNum1);
+        scanf("%d", &sNum2);
+
+        if( sNum1 == 0 && sNum2 == 0 )
+            break;
+
         printf("%d\n", sNum1 + sNum2 );
     }
 
